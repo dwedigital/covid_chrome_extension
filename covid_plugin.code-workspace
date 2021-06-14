@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../python/jsy_covid_proxy"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "covid_chrome_extension"
+	}
+}

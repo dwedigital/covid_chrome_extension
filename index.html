@@ -9,19 +9,22 @@
 <body>
     <div>Jersey COVID Stats</div>
     <div class="updated"> Updated at: <span class="date"></span></div>
-    <div class="active">Active cases: <span class="active active-data"></span></div>
-    <div class="active">New cases: <span class="active new-cases"></span></div>
-    <script src="main.js"></script>
+    <div class="section">Active cases: <span class="active-data"></span></div>
+    <div class="section">Symptomatic cases: <span class="symptomatic-data"></span></div>
+    <div class="section">Known # of case contacts: <span class="contacts-data"></span></div>
+   
     <style>
         html{
             width:300px;
         }
-        .active{
-            font-size:1.4rem;
+        .section, .active-data{
+            font-size:1.2rem;
         }
         .updated{
+            margin-bottom: 1rem;
             font-style:oblique;
         }
     </style>
+     <script src="main.js"></script>
 </body>
 </html>

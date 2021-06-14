@@ -1,9 +1,10 @@
 window.onload = () => {
-    fetch('http://127.0.0.1:8000/active-cases')
+    fetch('https://vibrant-grammar-254613.ew.r.appspot.com/active-cases')
         .then(data => data.json())
         .then((data) => {
             document.querySelector('.date').innerHTML = data.date;
             document.querySelector('.active-data').innerHTML = data.active;
-            document.querySelector('.new-cases').innerHTML = data.newCases;
+            document.querySelector('.symptomatic-data').innerHTML = data.casesSymptomatic;
+            document.querySelector('.contacts-data').innerHTML = data.contacts;
         })
 }
