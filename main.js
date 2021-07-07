@@ -36,7 +36,7 @@ window.onload = () => {
 }else{
     document.querySelector('.previous-day').innerHTML = "Previous day was a weekend so no data to compare"
 }
-            
+            console.log("test")
             
         })
 }
