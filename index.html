@@ -26,7 +26,7 @@
           Known # of case contacts: <span class="contacts-data"></span>
           <span class="contacts-data-delta delta"></span>
         </div>
-        <div><canvas id="myChart" width="400" height="400"></canvas></div>
+        <div class="chart"><canvas id="myChart" width="400" height="300"></canvas></div>
         <div class="info">
           Comparisons are based on the previous update which was at:
           <span class="previous-day"></span>
@@ -39,7 +39,7 @@
 
     <style>
       html {
-        width: 300px;
+        width: 450px;
       }
       body {
         padding: 0;
@@ -58,6 +58,7 @@
       }
       .content{
           padding: 0px 5px 0px 5px;
+          text-align: center;
       }
       .section {
         font-size: 0.9rem;
@@ -78,6 +79,9 @@
       }
       .negative {
         color: green;
+      }
+      .chart{
+        margin-top:1rem;
       }
       .info {
         margin-top: 1rem;

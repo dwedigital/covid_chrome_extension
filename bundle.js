@@ -3,8 +3,65 @@ var Chart = require('chart.js');
 
 window.onload = () => {
     fetch('https://vibrant-grammar-254613.ew.r.appspot.com/active-cases')
+    //fetch('http://127.0.0.1:8000/active-cases')
         .then(data => data.json())
         .then((data) => {
+            console.log(data)
+            dates = data[3].dates
+
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: data[3].dates.reverse().slice(-60),
+                datasets: [
+                  {
+                    label: "# of Non Symptomatic Cases",
+                    data: data[3].activeCases.reverse().slice(-60),
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 1)",
+
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                    ],
+                    borderWidth: 1
+                  },
+                  {
+                    label: "# of Symptomatic Cases",
+                    data: data[3].symptomaticCases.reverse().slice(-60),
+                    backgroundColor: [
+                      "rgba(50, 99, 132, 1)",
+
+                    ],
+                    borderColor: [
+                      "rgba(50, 99, 132, 1)",
+                    ],
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                  responsive: true,
+                scales: {
+                    x:{stacked:true},
+                  y: {
+                    stacked: true
+                  }
+                },
+                plugins:{
+                    title:{
+                        display: true,
+                        text: "Numbers for the last 60 Days"
+                    }
+                }
+              }
+            });
+          
+
+
+
+
             document.querySelector('.date').innerHTML = data[1].date;
             document.querySelector('.active-data').innerHTML = data[1].active;
             document.querySelector('.symptomatic-data').innerHTML = data[1].casesSymptomatic;
@@ -43,44 +100,7 @@ window.onload = () => {
         })
 
         
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var myChart = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-              {
-                label: "# of Votes",
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 206, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                  "rgba(153, 102, 255, 0.2)",
-                  "rgba(255, 159, 64, 0.2)"
-                ],
-                borderColor: [
-                  "rgba(255, 99, 132, 1)",
-                  "rgba(54, 162, 235, 1)",
-                  "rgba(255, 206, 86, 1)",
-                  "rgba(75, 192, 192, 1)",
-                  "rgba(153, 102, 255, 1)",
-                  "rgba(255, 159, 64, 1)"
-                ],
-                borderWidth: 1
-              }
-            ]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      
+
 }
 },{"chart.js":2}],2:[function(require,module,exports){
 /*!
