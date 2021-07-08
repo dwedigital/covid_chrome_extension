@@ -99,7 +99,7 @@ window.onload = () => {
             
         })
 
-        
+        document.querySelector('.title').addEventListener('click', ()=>window.close())
 
 }
 },{"chart.js":2}],2:[function(require,module,exports){

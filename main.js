@@ -98,6 +98,6 @@ window.onload = () => {
             
         })
 
-        
+        document.querySelector('.title').addEventListener('click', ()=>window.close())
 
 }

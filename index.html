@@ -11,6 +11,7 @@
   <body>
     <div class="title">
       <h1>Jersey COVID Stats</h1>
+      <img src="close.svg" alt="" width="25px" class="close">
     </div>
     <div class="content">
         <div class="updated">Updated at: <span class="date"></span></div>
@@ -38,11 +39,13 @@
 
 
     <style>
+      *, *:before, *:after {
+  box-sizing: border-box;
+}
       html {
         width: 450px;
       }
       body {
-        padding: 0;
         margin: 0;
         padding: 0 0px 10px 0px;
       }
@@ -50,12 +53,15 @@
         font-size: 1.2rem;
       }
       .title {
+        display: flex;
+        justify-content: space-between;
         width: 100%;
         background-color: black;
         color: white;
-        padding: 1px 0px;
+        padding: 0px 10px;
         text-align: center;
       }
+
       .content{
           padding: 0px 5px 0px 5px;
           text-align: center;
