@@ -6,9 +6,6 @@ window.onload = () => {
     //fetch('http://127.0.0.1:8000/active-cases')
         .then(data => data.json())
         .then((data) => {
-            console.log(data)
-            dates = data[3].dates
-
             var ctx = document.getElementById("myChart").getContext("2d");
             var myChart = new Chart(ctx, {
               type: "bar",
@@ -19,25 +16,16 @@ window.onload = () => {
                     label: "# of Non Symptomatic Cases",
                     data: data[3].activeCases.reverse().slice(-60),
                     backgroundColor: [
-                      "rgba(255, 99, 132, 1)",
+                        "rgba(50, 99, 132, 1)",
 
                     ],
-                    borderColor: [
-                      "rgba(255, 99, 132, 1)",
-                    ],
-                    borderWidth: 1
                   },
                   {
                     label: "# of Symptomatic Cases",
                     data: data[3].symptomaticCases.reverse().slice(-60),
                     backgroundColor: [
-                      "rgba(50, 99, 132, 1)",
-
+                      "rgba(255, 99, 132, 1)"
                     ],
-                    borderColor: [
-                      "rgba(50, 99, 132, 1)",
-                    ],
-                    borderWidth: 1
                   }
                 ]
               },
@@ -52,16 +40,28 @@ window.onload = () => {
                 plugins:{
                     title:{
                         display: true,
-                        text: "Numbers for the last 60 Days"
+                        text: "Active case numbers for the last 60 Days"
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'Weekends are excluded due to no data collection',
+                        color: 'blue',
+                        font: {
+                          size: 12,
+                          family: 'tahoma',
+                          weight: 'normal',
+                          style: 'italic'
+                        },
+                      padding: {
+                        bottom: 10
+                      }
+                    },
+                    legend: {
+                        position: 'bottom'
                     }
                 }
               }
             });
-          
-
-
-
-
             document.querySelector('.date').innerHTML = data[1].date;
             document.querySelector('.active-data').innerHTML = data[1].active;
             document.querySelector('.symptomatic-data').innerHTML = data[1].casesSymptomatic;
