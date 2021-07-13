@@ -1,7 +1,7 @@
 {
     "name": "JSY COVID Active Cases",
     "description": "Shows the latest COVID active cases Data for Jersey",
-    "version": "1.4.0",
+    "version": "1.4.2",
     "manifest_version": 3,
     "icons": {
         "16": "icon16.png",
