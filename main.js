@@ -72,6 +72,9 @@ window.onload = () => {
         (data[1].dayOfWeek != 5 || data[1].dayOfWeek != 6) &&
         (data[0].dayOfWeek != 5 || data[0].dayOfWeek != 6)
       ) {
+
+        document.querySelector(".previous-day").innerHTML = data[0].date;
+
           // active cases comparison
           if (data[1].active - data[0].active > 0) {
             document.querySelector(".active-data-delta").innerHTML = `+${
@@ -173,7 +176,7 @@ window.onload = () => {
           "Previous day was a weekend so no data to compare";
       }
     });
-
+    
   document
     .querySelector(".btn-close")
     .addEventListener("click", () => window.close());
