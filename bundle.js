@@ -58,13 +58,15 @@ window.onload = () => {
         },
       });
 
+      const numFormat = new Intl.NumberFormat('en-US')
+
       // Set up today's dataset
 
       document.querySelector(".date").innerHTML = data[1].date;
-      document.querySelector(".active-data").innerHTML = data[1].active;
-      document.querySelector(".symptomatic-data").innerHTML = data[1].casesSymptomatic;
-      document.querySelector(".contacts-data").innerHTML = data[1].contacts;
-      document.querySelector(".hospital-data").innerHTML = data[1].hospitalCases;
+      document.querySelector(".active-data").innerHTML = numFormat.format(data[1].active);
+      document.querySelector(".symptomatic-data").innerHTML = numFormat.format(data[1].casesSymptomatic);
+      document.querySelector(".contacts-data").innerHTML = numFormat.format(data[1].contacts);
+      document.querySelector(".hospital-data").innerHTML = numFormat.format(data[1].hospitalCases);
 
       // check that any of the days were not weekend days as no data is recorded by Gov
       if (
@@ -72,80 +74,100 @@ window.onload = () => {
         (data[0].dayOfWeek != 5 || data[0].dayOfWeek != 6)
       ) {
           // active cases comparison
-        if (data[1].active - data[0].active > 0) {
-          document.querySelector(".active-data-delta").innerHTML = `+${
-            data[1].active - data[0].active
-          }`;
-          document
-            .querySelector(".active-data-delta")
-            .classList.add("positive");
-        } else {
-          document.querySelector(".active-data-delta").innerHTML = `-${
-            data[1].active - data[0].active
-          }`;
-          document
-            .querySelector(".active-data-delta")
-            .classList.add("negative");
-        }
+          if (data[1].active - data[0].active > 0) {
+            document.querySelector(".active-data-delta").innerHTML = `+${
+                numFormat.format(data[1].active - data[0].active)
+            }`;
+            document
+              .querySelector(".active-data-delta")
+              .classList.add("table-danger");
+          } 
+          else if (data[1].active - data[0].active == 0){
+            document.querySelector(".active-data-delta").innerHTML = "No change";
+              document
+                .querySelector(".active-data-delta")
+                .classList.add("table-info");
+          }
+          else {
+            document.querySelector(".active-data-delta").innerHTML = `-${
+                numFormat.format(data[1].active - data[0].active)
+            }`;
+            document
+              .querySelector(".active-data-delta")
+              .classList.add("table-success");
+          }
 
         // symptomatic cases comparison
         if (data[1].casesSymptomatic - data[0].casesSymptomatic > 0) {
-          document.querySelector(".symptomatic-data-delta").innerHTML = `+${
-            data[1].casesSymptomatic - data[0].casesSymptomatic
-          }`;
-          document
-            .querySelector(".symptomatic-data-delta")
-            .classList.add("positive");
-        } else {
-          document.querySelector(".symptomatic-data-delta").innerHTML = `-${
-            data[1].casesSymptomatic - data[0].casesSymptomatic
-          }`;
-          document
-            .querySelector(".symptomatic-data-delta")
-            .classList.add("negative");
-        }
+            document.querySelector(".symptomatic-data-delta").innerHTML = `+${
+                numFormat.format(data[1].casesSymptomatic - data[0].casesSymptomatic)
+            }`;
+            document
+              .querySelector(".symptomatic-data-delta")
+              .classList.add("table-danger");
+          } 
+          else if (data[1].casesSymptomatic - data[0].casesSymptomatic == 0){
+            document.querySelector(".symptomatic-data-delta").innerHTML = "No change";
+              document
+                .querySelector(".symptomatic-data-delta")
+                .classList.add("table-info");
+          }
+          else {
+            document.querySelector(".symptomatic-data-delta").innerHTML = `-${
+                numFormat.format(data[1].casesSymptomatic - data[0].casesSymptomatic)
+            }`;
+            document
+              .querySelector(".symptomatic-data-delta")
+              .classList.add("table-success");
+          } 
         // hospital cases comparison
         if (data[1].hospitalCases - data[0].hospitalCases > 0) {
             document.querySelector(".hospital-data-delta").innerHTML = `+${
-              data[1].hospitalCases - data[0].hospitalCases
+                numFormat.format(data[1].hospitalCases - data[0].hospitalCases)
             }`;
             document
               .querySelector(".hospital-data-delta")
-              .classList.add("positive");
+              .classList.add("table-danger");
           } 
           else if (data[1].hospitalCases - data[0].hospitalCases == 0){
             document.querySelector(".hospital-data-delta").innerHTML = "No change";
               document
                 .querySelector(".hospital-data-delta")
-                .classList.add("negative");
+                .classList.add("table-info");
           }
           else {
             document.querySelector(".hospital-data-delta").innerHTML = `-${
-              data[1].hospitalCases - data[0].hospitalCases
+                numFormat.format(data[1].hospitalCases - data[0].hospitalCases)
             }`;
             document
               .querySelector(".hospital-data-delta")
-              .classList.add("negative");
+              .classList.add("table-success");
           }
 
         // case contacts comparison
         if (data[1].contacts - data[0].contacts > 0) {
-          document.querySelector(".contacts-data-delta").innerHTML = `+${
-            data[1].contacts - data[0].contacts
-          }`;
-          document
-            .querySelector(".contacts-data-delta")
-            .classList.add("positive");
-        } else {
-          document.querySelector(".contacts-data-delta").innerHTML = `-${
-            data[1].contacts - data[0].contacts
-          }`;
-          document
-            .querySelector(".contacts-data-delta")
-            .classList.add("negative");
-        }
-        document.querySelector(".previous-day").innerHTML = data[0].date;
-      } 
+            document.querySelector(".contacts-data-delta").innerHTML = `+${
+                numFormat.format(data[1].contacts - data[0].contacts)
+            }`;
+            document
+              .querySelector(".contacts-data-delta")
+              .classList.add("table-danger");
+          } 
+          else if (data[1].contacts - data[0].contacts == 0){
+            document.querySelector(".contacts-data-delta").innerHTML = "No change";
+              document
+                .querySelector(".contacts-data-delta")
+                .classList.add("table-info");
+          }
+          else {
+            document.querySelector(".contacts-data-delta").innerHTML = `-${
+                numFormat.format(data[1].contacts - data[0].contacts)
+            }`;
+            document
+              .querySelector(".contacts-data-delta")
+              .classList.add("table-success");
+          } 
+    }
       // If any of the days were a weekend. Used as a safety fallback
       else {
         document.querySelector(".previous-day").innerHTML =
@@ -154,7 +176,7 @@ window.onload = () => {
     });
 
   document
-    .querySelector(".title")
+    .querySelector(".btn-close")
     .addEventListener("click", () => window.close());
 };
 
