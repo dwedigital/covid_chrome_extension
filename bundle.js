@@ -2,6 +2,8 @@
 var Chart = require("chart.js");
 
 window.onload = () => {
+  chrome.runtime.sendMessage({message: "opened"})
+  chrome.action.setBadgeText({text: ""})
   fetch("https://vibrant-grammar-254613.ew.r.appspot.com/active-cases")
     //fetch('http://127.0.0.1:8000/active-cases')
     .then((data) => data.json())
@@ -92,7 +94,7 @@ window.onload = () => {
                 .classList.add("table-info");
           }
           else {
-            document.querySelector(".active-data-delta").innerHTML = `-${
+            document.querySelector(".active-data-delta").innerHTML = `${
                 numFormat.format(data[1].active - data[0].active)
             }`;
             document
@@ -116,7 +118,7 @@ window.onload = () => {
                 .classList.add("table-info");
           }
           else {
-            document.querySelector(".symptomatic-data-delta").innerHTML = `-${
+            document.querySelector(".symptomatic-data-delta").innerHTML = `${
                 numFormat.format(data[1].casesSymptomatic - data[0].casesSymptomatic)
             }`;
             document
@@ -139,7 +141,7 @@ window.onload = () => {
                 .classList.add("table-info");
           }
           else {
-            document.querySelector(".hospital-data-delta").innerHTML = `-${
+            document.querySelector(".hospital-data-delta").innerHTML = `${
                 numFormat.format(data[1].hospitalCases - data[0].hospitalCases)
             }`;
             document
@@ -163,7 +165,7 @@ window.onload = () => {
                 .classList.add("table-info");
           }
           else {
-            document.querySelector(".contacts-data-delta").innerHTML = `-${
+            document.querySelector(".contacts-data-delta").innerHTML = `${
                 numFormat.format(data[1].contacts - data[0].contacts)
             }`;
             document
