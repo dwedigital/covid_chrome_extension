@@ -4,6 +4,42 @@ var Chart = require("chart.js");
 window.onload = () => {
   chrome.runtime.sendMessage({message: "opened"})
   chrome.action.setBadgeText({text: ""})
+
+
+  // Deal with vaccination data
+
+  fetch("https://vibrant-grammar-254613.ew.r.appspot.com/vaccine-data")
+  .then(data => data.json())
+  .then(data => {
+    document.getElementById("vaccine-date").innerHTML = data.date
+
+    var vaccineChart = new Chart(document.getElementById("vaccine-chart").getContext("2d"), {
+     type: 'doughnut',
+     data:{
+       labels : ["First Vaccine", "Second Vaccine", "Booster"],
+        datasets: [{
+          data: [data.first, data.second, data.booster],
+          backgroundColor: ["#9fd3c7", "#385170", "#142d4c"]
+        }]
+     },
+     options: {
+       title: {
+         display: true,
+         text: "Vaccination Status"
+       }
+     }
+    });
+  })
+  .catch(err => console.log(err));
+
+
+
+
+
+
+
+
+  // Deal with the current daily stats
   fetch("https://vibrant-grammar-254613.ew.r.appspot.com/active-cases")
     //fetch('http://127.0.0.1:8000/active-cases')
     .then((data) => data.json())
